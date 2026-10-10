@@ -1,0 +1,27 @@
+{
+  "name": "chengannur-transport-website",
+  "version": "1.0.0",
+  "description": "Static Next.js transport enquiry website",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "test": "node tests/enquiry.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
