@@ -1,7 +1,7 @@
 {
-  "name": "chengannur-transport-website",
-  "version": "1.0.0",
-  "description": "Static Next.js transport enquiry website",
+  "name": "pv-travels-chengannur",
+  "version": "2.0.0",
+  "description": "PV TRAVELS Sabarimala pilgrimage transport website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

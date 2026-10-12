@@ -1,15 +1,10 @@
-# Delivery verification
+# Verification
 
-## Passed
-
-- Next.js production build with `output: 'export'`; homepage and not-found page generated in `out/`.
-- TypeScript check (`npm run typecheck`).
-- Six automated checks: local date formatting; required fields/passenger bounds; travel/return date rules; telephone/WhatsApp placeholder handling; encoded complete WhatsApp message; navigation target/accessibility markup.
-- Static export inspection: all section anchors resolve and bundled image/script assets exist. Title and meta description are present.
-- Responsive stylesheet reviewed at desktop, tablet and mobile breakpoints; no remote photos/fonts required.
-
-## Limits and client launch checks
-
-No browser automation was available, so live visual checks, menu clicks, keyboard navigation and device layout have not been browser-tested. Calls and actual WhatsApp delivery require the client’s real numbers and a device/app. The supplied contact fields are intentionally blank.
-
-Before launch, view at 360px, 768px and desktop widths; test the mobile menu and Escape key, FAQ toggles, vehicle selection, form errors and valid enquiry. Configure real contact numbers and press Call/WhatsApp on a phone. Check the fallback link if popups are blocked. Ask the operator to verify routes, pickup/drop access, fleet details and every company claim. No booking is automatically confirmed.
+- `npm test`: 6 tests passed. Required fields, passenger bounds, date validity, past dates, return date ordering, contact link validation, WhatsApp encoding and enquiry content checked.
+- `npm run typecheck`: passed.
+- `npm run build`: passed; static export generated in `out/`.
+- Export audit: section anchors resolve, phone/WhatsApp/email target the supplied contacts, all 12 optimized images exist, and all 12 original uploads are preserved.
+- Responsive CSS covers desktop, tablet, and mobile, with keyboard focus styling and reduced-motion support.
+- Browser preview was unavailable in this environment. Visual rendering and interactive behavior on real desktop/mobile browsers were not independently verified. Check navigation, both pagination controls, gallery/lightbox, form submission and Google Maps before public launch.
+- External WhatsApp, phone, email and Google Maps services depend on the visitor's browser/device and connection. No WhatsApp message was sent during verification.
+- Deployment and domain/DNS connection were not performed; this deliverable is a source and static-output ZIP.
