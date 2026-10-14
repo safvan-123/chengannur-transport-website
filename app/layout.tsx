@@ -3,14 +3,14 @@ import "./globals.css";
 import { business } from "../lib/config";
 export const metadata: Metadata = {
   metadataBase: new URL(business.websiteUrl),
-  title: "PV TRAVELS Chengannur | Sabarimala Pilgrimage Transport",
+  title: "PV Travels Chengannur | Sabarimala Pilgrimage Transport",
   description:
-    "Plan your Sabarimala pilgrimage with PV TRAVELS, Chengannur, Kerala. Swift Dzire, Innova, Winger, Tempo Traveller and 49-seat bus enquiries. Call +91 9446055334.",
+    "Book Sabarimala pilgrimage transport with PV Travels, Chengannur. Vehicle options for families and groups, 4–49 seats. Enquire on WhatsApp.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "PV TRAVELS | Your Sabarimala Journey",
+    title: "PV Travels Chengannur | Sabarimala Pilgrimage Transport",
     description:
-      "Pilgrimage transport from Chengannur and beyond. Vehicle options from 4 to 49 seats.",
+      "Book Sabarimala pilgrimage transport with PV Travels, Chengannur. Vehicle options for families and groups, 4–49 seats. Enquire on WhatsApp.",
     url: business.websiteUrl,
     siteName: business.name,
     type: "website",
@@ -26,33 +26,68 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PV TRAVELS Chengannur",
-    description: "Sabarimala pilgrimage transport · 4 to 49 seat options",
+    title: "PV Travels Chengannur | Sabarimala Pilgrimage Transport",
+    description: "Book Sabarimala pilgrimage transport with PV Travels, Chengannur. Vehicle options for families and groups, 4–49 seats. Enquire on WhatsApp.",
     images: ["/images/fleet-banner.webp"],
   },
   icons: { icon: "/images/logo.webp", apple: "/images/logo.webp" },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 };
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const homeUrl = `${business.websiteUrl}/`;
+  const businessId = `${homeUrl}#business`;
   const schema = {
     "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    name: business.name,
-    url: business.websiteUrl,
-    telephone: business.phone,
-    email: business.email,
-    image: `${business.websiteUrl}/images/fleet-banner.webp`,
-    logo: `${business.websiteUrl}/images/logo.webp`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Chengannur",
-      addressRegion: "Kerala",
-      addressCountry: "IN",
-    },
-    areaServed: "Kerala",
-    hasMap: business.mapUrl,
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": businessId,
+        name: business.name,
+        url: homeUrl,
+        telephone: business.phone,
+        email: business.email,
+        image: `${business.websiteUrl}/images/fleet-banner.webp`,
+        logo: `${business.websiteUrl}/images/logo.webp`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Chengannur",
+          addressRegion: "Kerala",
+          addressCountry: "IN",
+        },
+        areaServed: { "@type": "Place", name: "Kerala, India" },
+        hasMap: business.mapUrl,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${homeUrl}#website`,
+        name: "PV Travels Chengannur",
+        url: homeUrl,
+        inLanguage: "en-IN",
+        publisher: { "@id": businessId },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${homeUrl}#webpage`,
+        name: "PV Travels Chengannur | Sabarimala Pilgrimage Transport",
+        url: homeUrl,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${homeUrl}#website` },
+        about: { "@id": businessId },
+        mainEntity: { "@id": `${homeUrl}#transport-service` },
+      },
+      {
+        "@type": "Service",
+        "@id": `${homeUrl}#transport-service`,
+        name: "Sabarimala pilgrimage transport",
+        serviceType: "Family and group pilgrimage transportation",
+        provider: { "@id": businessId },
+        url: `${homeUrl}#vehicles`,
+        areaServed: business.mainPickups.map((route) => ({ "@type": "Place", name: `${route.name}, Kerala, India` })),
+        description: "Car, Tempo Traveller and bus enquiries for 4–49 passengers. Vehicle availability, permitted access points and fares are confirmed directly with PV Travels.",
+      },
+    ],
   };
   return (
     <html lang="en">

@@ -381,108 +381,32 @@ export default function TransportSite() {
         </div>
       </header>
       <main id="main">
-        <section id="home" className="hero">
+        <section id="home" className="hero" aria-label="PV Travels pilgrimage fleet">
           <img
             className="hero-bg"
             src="/images/fleet-banner.webp"
-            alt="PV TRAVELS pilgrimage fleet with bus, Tempo Traveller and car"
+            srcSet="/images/fleet-banner-640.webp 640w, /images/fleet-banner-960.webp 960w, /images/fleet-banner-1280.webp 1280w, /images/fleet-banner-1920.webp 1920w"
+            sizes="100vw"
+            alt="PV Travels Chengannur fleet for Sabarimala pilgrimage transport"
+            width={1920}
+            height={1079}
             fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
-          <div className="hero-shade" />
-          <div className="container hero-grid">
-            <div className="hero-copy">
-              <div className="eyebrow">
-                <span /> SWAMIYE SARANAM AYYAPPA
-              </div>
-              <h1>
-                A sacred journey.
-                <br />A thoughtful
-                <br />
-                <em>way to travel.</em>
-              </h1>
-              <p>
-                Sabarimala pilgrimage transport from Chengannur and beyond.
-                Travel together, with a vehicle that fits your family or pilgrim
-                group.
-              </p>
-              <div className="actions">
-                <ContactButton className="gold">WhatsApp Booking</ContactButton>
-                <ContactButton kind="call" className="outline">
-                  Call Now
-                </ContactButton>
-              </div>
-              <p className="malayalam" lang="ml">
-                ശബരിമല യാത്രയ്ക്ക് നിങ്ങളുടെ യാത്രാ പങ്കാളി.
-              </p>
-            </div>
-            <div className="hero-label">
-              <span>THE JOURNEY OF DEVOTION</span>
-              <strong>Sabarimala, Kerala</strong>
-            </div>
-          </div>
-          <div className="hero-bottom container">
-            <span>
-              <Icon name="pin" />
-              Based in Chengannur
-            </span>
-            <span>
-              <Icon name="people" />4 to 49 seat options
-            </span>
-            <span>
-              <Icon name="chat" />
-              Direct WhatsApp enquiries
-            </span>
-            <a href="#vehicles">Explore our fleet ↓</a>
-          </div>
+          <div className="hero-shade" aria-hidden="true" />
         </section>
-        <section id="about" className="section container about-grid reveal">
-          <div className="about-visual">
-            <img
-              src="/images/fleet-banner.webp"
-              alt="PV TRAVELS vehicles presented for pilgrimage journeys"
-              loading="lazy"
-              width="1920"
-              height="1079"
-            />
-            <div className="image-caption">
-              YOUR GROUP. YOUR JOURNEY. YOUR VEHICLE.
+        <section id="about" className="section pv-intro" aria-labelledby="pv-intro-title">
+          <div className="container reveal">
+            <h1 id="pv-intro-title">PV TRAVELS</h1>
+            <p className="pv-intro-location">Chengannur, Kerala</p>
+            <p className="pv-intro-service">Sabarimala Pilgrimage Travel &amp; Transportation</p>
+            <p className="pv-intro-description">Comfortable journeys for families and pilgrim groups.</p>
+            <p className="pv-intro-seats"><strong>4–49 Seating Options</strong><span aria-hidden="true"> | </span>40–49 seats for large groups</p>
+            <div className="actions">
+              <ContactButton className="gold">WhatsApp Booking</ContactButton>
+              <ContactButton kind="call" className="outline">Call Now</ContactButton>
             </div>
-          </div>
-          <div className="about-copy">
-            <div className="eyebrow dark">ROOTED IN CHENGANNUR</div>
-            <h2>
-              For the journey
-              <br />
-              that matters to you.
-            </h2>
-            <p>
-              PV TRAVELS brings your Sabarimala travel plans together. From a
-              small family to a larger pilgrim group, explore our fleet and
-              speak directly with us about your journey.
-            </p>
-            <p>
-              Choose your pickup route, share your travel date and plan your
-              return or a visit to one of the listed related temples. We’ll
-              discuss vehicle availability, pickup and drop arrangements, and
-              your quote.
-            </p>
-            <div className="about-facts">
-              <div>
-                <strong>4–49</strong>
-                <span>Seating options</span>
-              </div>
-              <div>
-                <strong>9</strong>
-                <span>Sabarimala routes</span>
-              </div>
-              <div>
-                <strong>8</strong>
-                <span>Related temple routes</span>
-              </div>
-            </div>
-            <a className="text-link" href="#enquiry">
-              Let’s plan your pilgrimage <Icon size={18} />
-            </a>
           </div>
         </section>
         <section id="vehicles" className="section fleet-section">
@@ -591,6 +515,43 @@ export default function TransportSite() {
             onChange={setRoutePage}
             label="Sabarimala route pages"
           />
+          <section id="pickup-points" className="main-pickups" aria-labelledby="pickup-heading">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow dark">OUR MAIN PICKUP POINTS</div>
+                <h2 id="pickup-heading">Your journey to Sabarimala starts here.</h2>
+              </div>
+            </div>
+            <div className="pickup-grid">
+              {business.mainPickups.map((route) => (
+                <article className="temple-photo-card pickup-card" key={route.name}>
+                  <div className="pickup-photo">
+                    <img
+                      src={route.image}
+                      srcSet={`${route.image.replace(".webp", "-480.webp")} 480w, ${route.image} 736w`}
+                      sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1100px) calc((100vw - 84px) / 3), 388px"
+                      alt={route.imageAlt}
+                      width={736}
+                      height={1308}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="temple-photo-body">
+                    <h3>{route.name}<span className="pickup-destination">→ Sabarimala</span></h3>
+                    <a
+                      className="vehicle-button"
+                      href={whatsappHref(business.whatsapp, `Hello PV TRAVELS, I would like to enquire about ${route.name} to Sabarimala transport. Please confirm pickup arrangements, vehicle availability and the quote.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      WhatsApp enquiry <Icon name="chat" size={18} />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
           <div className="temple-head">
             <h3>Continue your temple journey</h3>
             <p>Specified related temple routes from Sabarimala.</p>
@@ -599,16 +560,17 @@ export default function TransportSite() {
             {business.templeRoutes
               .slice(templePage * 6, templePage * 6 + 6)
               .map((r, i) => (
-                <article className="temple-photo-card" key={r.name}>
+                <article className="temple-photo-card" key={`${r.name}-${templePage * 6 + i}`}>
                   <div className="temple-photo">
                     <img
                       src={r.image}
-                      alt={r.name}
+                      decoding="async"
+                      alt={`${r.name}, ${r.location}`}
                       loading="lazy"
                       width="736"
                       height="1104"
                     />
-                    <span className="temple-distance">{r.km} km · approx.</span>
+                    <span className="temple-distance">{r.km == null ? "Enquire for route details" : `${r.km} km · approx.`}</span>
                   </div>
                   <div className="temple-photo-body">
                     <small>

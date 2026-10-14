@@ -2539,3 +2539,50 @@ p {
   #gallery .gallery-caption > span { font-size: 8px; }
   #gallery .gallery-bottom { gap: 16px; margin-top: 22px; }
 }
+
+
+/* Requested PV Travels introduction and main pickup cards. */
+.pv-intro {
+  background: #15271f;
+  color: white;
+  text-align: center;
+  padding-block: 56px 60px;
+}
+.pv-intro h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  color: #f4ecd9;
+}
+.pv-intro p { margin-bottom: 10px; }
+.pv-intro-location { color: #dfbf82; font-size: 18px; letter-spacing: 0.05em; }
+.pv-intro-service { color: #f4ecd9; font-size: clamp(17px, 2vw, 22px); }
+.pv-intro-description { color: #c4cbc5; font-size: 14px; }
+.pv-intro-seats { color: #dfbf82; font-size: 13px; }
+.pv-intro .actions { justify-content: center; margin-top: 24px; }
+.pv-intro .outline { border-color: #b7bcaf; color: #f4ecd9; }
+.main-pickups { margin-top: 65px; }
+.main-pickups .section-head h2 { max-width: 750px; }
+.pickup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.pickup-card { min-width: 0; display: flex; flex-direction: column; }
+.pickup-photo { aspect-ratio: 4 / 3; overflow: hidden; background: var(--cream); }
+.pickup-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 63%; }
+.pickup-card .temple-photo-body { flex: 1; display: flex; flex-direction: column; }
+.pickup-card h3 { font-family: Georgia, serif; font-size: clamp(21px, 2.2vw, 27px); font-weight: 400; margin-bottom: 0; overflow-wrap: anywhere; }
+.pickup-destination { display: block; margin-top: 9px; font-family: Arial, sans-serif; color: var(--muted); font-size: 13px; }
+.pickup-card .vehicle-button { margin-top: auto; padding-top: 18px; min-height: 48px; }
+.pickup-card h3 + .vehicle-button { margin-top: 24px; }
+@media (max-width: 900px) {
+  .pickup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pv-intro { padding-block: 36px 40px; }
+  .pv-intro-location { font-size: 16px; }
+  .pv-intro-service { line-height: 1.4; }
+  .pv-intro .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pv-intro .button { padding-inline: 10px; }
+  .pv-intro-seats { max-width: 310px; margin-inline: auto; }
+  .main-pickups { margin-top: 45px; }
+  .pickup-grid { grid-template-columns: minmax(0, 1fr); }
+  .pickup-card h3 { font-size: 25px; }
+}

@@ -7,7 +7,7 @@ export const business = {
   address: "Chengannur, Kerala",
   serviceArea: "Chengannur, Kerala",
   mapUrl: "https://maps.app.goo.gl/Artzzx9NEs96LqPRA",
-  websiteUrl: "https://www.pvtravelschengannur.com",
+  websiteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.pvtravelschengannur.com").replace(/\/+$/, ""),
   vehicles: [
    {
       id: "bus",
@@ -61,7 +61,36 @@ export const business = {
     { name: "Ernakulam", km: 171 },
     { name: "Thrissur", km: 205 },
   ],
+  mainPickups: [
+    {
+      name: "Thiruvananthapuram",
+      image: "/images/pickup-thiruvananthapuram.webp",
+      imageAlt: "Sree Padmanabhaswamy Temple in Thiruvananthapuram, a regional pilgrimage landmark",
+    },
+    {
+      name: "Kollam",
+      image: "/images/pickup-kollam.webp",
+      imageAlt: "Oachira Sree Parabrahma Temple in Kollam district, a regional pilgrimage landmark",
+    },
+    {
+      name: "Kottayam",
+      image: "/images/pickup-kottayam.webp",
+      imageAlt: "Ettumanoor Sree Mahadeva Temple in Kottayam district, a regional pilgrimage landmark",
+    },
+  ],
   templeRoutes: [
+       {
+      name: "Sree Padmanabhaswamy Temple",
+      km: 175,
+      image: "/images/padmanabhaswamy-route.webp",
+      location: "Thiruvananthapuram",
+    },
+      {
+      name: "Oachira Sree Parabrahma Temple",
+      km: 108,
+      image: "/images/oachira.webp",
+      location: "Oachira, Kollam",
+    },
     {
       name: "Chenkal Maheswaram Sri Sivaparvathi Temple",
       km: 203,
@@ -74,11 +103,11 @@ export const business = {
       image: "/images/mannarasala.webp",
       location: "Haripad, Alappuzha",
     },
-    {
-      name: "Sree Padmanabhaswamy Temple",
-      km: 175,
-      image: "/images/padmanabhaswamy-route.webp",
-      location: "Thiruvananthapuram",
+  {
+      name: "Ettumanoor Sree Mahadeva Temple",
+      km: 119,
+      image: "/images/ettumanoor.webp",
+      location: "Ettumanoor, Kottayam",
     },
     {
       name: "Chettikulangara Devi Temple",
@@ -93,12 +122,6 @@ export const business = {
       location: "Haripad, Alappuzha",
     },
     {
-      name: "Oachira Sree Parabrahma Temple",
-      km: 108,
-      image: "/images/oachira.webp",
-      location: "Oachira, Kollam",
-    },
-    {
       name: "Sree Vadakkumnathan Temple",
       km: 198,
       image: "/images/vadakkumnathan.webp",
@@ -109,6 +132,12 @@ export const business = {
       km: 119,
       image: "/images/ettumanoor.webp",
       location: "Ettumanoor, Kottayam",
+    },
+    {
+      name: "Vaikom Sree Mahadeva Temple",
+      km: null, // No verified Sabarimala route distance was supplied.
+      image: "/images/vaikom-mahadeva.webp",
+      location: "Vaikom, Kottayam",
     },
   ],
   faqs: [
@@ -130,7 +159,7 @@ export const business = {
     {
       question: "Can we include a return trip or a related temple visit?",
       answer:
-        "Yes. Enquire about a return journey and any of the eight listed related temple routes from Sabarimala. Share your preferred temple stops with PV TRAVELS to confirm the itinerary and quote.",
+        "Yes. Enquire about a return journey and any of the listed related temple routes from Sabarimala. Share your preferred temple stops with PV TRAVELS to confirm the itinerary and quote.",
     },
     {
       question: "Is my booking confirmed when I submit the form?",
