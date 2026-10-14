@@ -252,6 +252,27 @@ export default function TransportSite() {
   const [templePage, setTemplePage] = useState(0),
     [routePage, setRoutePage] = useState(0),
     [slide, setSlide] = useState(0);
+  const templeGridRef = useRef<HTMLDivElement>(null);
+  const templeScrollPending = useRef(false);
+
+  function changeTemplePage(page: number) {
+    if (page === templePage) return;
+    templeScrollPending.current = true;
+    setTemplePage(page);
+  }
+
+  useEffect(() => {
+    if (!templeScrollPending.current) return;
+    templeScrollPending.current = false;
+    // Scroll after React has rendered the newly selected temple cards.
+    templeGridRef.current?.scrollIntoView({
+      block: "start",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  }, [templePage]);
+
   const [lightbox, setLightbox] = useState<number | null>(null);
   const lightboxClose = useRef<HTMLButtonElement>(null),
     galleryTrigger = useRef<HTMLButtonElement | null>(null);
@@ -518,8 +539,7 @@ export default function TransportSite() {
           <section id="pickup-points" className="main-pickups" aria-labelledby="pickup-heading">
             <div className="section-head">
               <div>
-                <div className="eyebrow dark">OUR MAIN PICKUP POINTS</div>
-                <h2 id="pickup-heading">Your journey to Sabarimala starts here.</h2>
+                <h2 id="pickup-heading">Our Main Pickup Points</h2>
               </div>
             </div>
             <div className="pickup-grid">
@@ -556,7 +576,7 @@ export default function TransportSite() {
             <h3>Continue your temple journey</h3>
             <p>Specified related temple routes from Sabarimala.</p>
           </div>
-          <div className="temple-grid">
+          <div className="temple-grid" ref={templeGridRef}>
             {business.templeRoutes
               .slice(templePage * 6, templePage * 6 + 6)
               .map((r, i) => (
@@ -597,7 +617,7 @@ export default function TransportSite() {
           <Pagination
             page={templePage}
             total={Math.ceil(business.templeRoutes.length / 6)}
-            onChange={setTemplePage}
+            onChange={changeTemplePage}
             label="Temple route pages"
           />
           <p className="section-note">

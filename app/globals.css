@@ -2562,7 +2562,12 @@ p {
 .pv-intro .actions { justify-content: center; margin-top: 24px; }
 .pv-intro .outline { border-color: #b7bcaf; color: #f4ecd9; }
 .main-pickups { margin-top: 65px; }
-.main-pickups .section-head h2 { max-width: 750px; }
+.main-pickups .section-head h2 {
+  max-width: 750px;
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.25;
+}
+.temple-grid { scroll-margin-top: 16px; }
 .pickup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .pickup-card { min-width: 0; display: flex; flex-direction: column; }
 .pickup-photo { aspect-ratio: 4 / 3; overflow: hidden; background: var(--cream); }
