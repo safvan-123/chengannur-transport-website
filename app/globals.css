@@ -2292,6 +2292,7 @@ p {
     min-height: 0;
     background: #15271f;
   }
+
   #home .hero-bg {
     position: relative;
     inset: auto;
@@ -2581,7 +2582,7 @@ p {
   .pickup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
-  .pv-intro { padding-block: 36px 40px; }
+  .pv-intro { padding-block: 30px 34px; }
   .pv-intro-location { font-size: 16px; }
   .pv-intro-service { line-height: 1.4; }
   .pv-intro .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -2590,4 +2591,8 @@ p {
   .main-pickups { margin-top: 45px; }
   .pickup-grid { grid-template-columns: minmax(0, 1fr); }
   .pickup-card h3 { font-size: 25px; }
+   #pv-intro-title {
+    font-size: 33.6px;
+  }
 }
+  /* Add at the end of your CSS: reduce mobile PV Travels title by 20%. */
