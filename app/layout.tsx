@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Book Sabarimala pilgrimage transport with PV Travels, Chengannur. Vehicle options for families and groups, 4–49 seats. Enquire on WhatsApp.",
     images: ["/images/fleet-banner.webp"],
   },
-  icons: { icon: "/images/logo.webp", apple: "/images/logo.webp" },
+  icons: { icon: "/icon.png", apple: "/images/logo.webp" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 };
 export default function Layout({
